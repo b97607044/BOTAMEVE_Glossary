@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>酷殘陣線字彙表 The Body's Tale of Mercy and Vengeance Glossary</title>
+<style>
+:root{--g1:#00ff88;--g2:#00cc66;--p1:#bf5fff;--bg:#080c14;--bg2:#0d1220;--surface:#131c2e;--surface2:#1a2540;--border:rgba(0,255,136,0.15);--border2:rgba(191,95,255,0.2);--txt:#e8f4f0;--txt2:#9bb5a8;--txt3:#5a7a6e;--r:8px;--rl:14px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,136,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 1.5rem 4rem}
+header{padding:3rem 0 2.5rem;border-bottom:1px solid var(--border)}
+/* Tier 1 — biggest, the work's identity */
+.site-title-zh{font-size:1.5rem;font-weight:700;letter-spacing:.05em;color:var(--txt);margin-bottom:.1rem}
+.site-title-zh .g{color:var(--g1)}.site-title-zh .p{color:var(--p1)}
+.site-title-en{font-size:1.85rem;font-weight:700;line-height:1.2;background:linear-gradient(135deg,var(--g1),var(--p1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.site-sub{font-size:.78rem;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2rem}
+/* Tier 2 — project description, clearly smaller */
+.proj-desc{padding:0;margin-bottom:1.75rem}
+.proj-tag{font-size:.63rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:.45rem}
+.proj-desc p{font-size:.84rem;line-height:1.82;color:var(--txt2)}
+/* Tier 3 — glossary intro, subtlest */
+.intro{border-left:2px solid var(--g2);padding:.7rem 0 .7rem 1.25rem}
+.intro-lbl{font-size:.63rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:.4rem}
+.intro p{font-size:.8rem;line-height:1.85;color:var(--txt3)}.intro-divider{width:100%;height:1px;background:var(--border);margin:.7rem 0}
+.contrib-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem 1.4rem;margin-top:.25rem}
+.contrib-title{font-size:.78rem;font-weight:600;color:var(--g1);margin-bottom:.15rem;letter-spacing:.04em}
+.contrib-sub{font-size:.72rem;color:var(--txt3);margin-bottom:1rem}
+.contrib-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:600px){.contrib-grid{grid-template-columns:1fr}}
+.fld label{display:block;font-size:.67rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:.28rem}
+.fld input,.fld select,.fld textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);color:var(--txt);font-size:.82rem;font-family:inherit;padding:.44rem .7rem;outline:none;transition:border-color .15s;resize:vertical}
+.fld textarea{min-height:68px}.fld input:focus,.fld textarea:focus{border-color:var(--g2);box-shadow:0 0 8px rgba(0,255,136,.08)}
+.fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a7a6e' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:2rem}
+.fld select option{background:var(--bg2)}
+.contrib-full{grid-column:1/-1}
+.contrib-actions{display:flex;align-items:flex-start;gap:1rem;margin-top:.75rem;flex-wrap:wrap}
+.submit-btn{padding:.44rem 1.2rem;border-radius:var(--r);border:1px solid var(--g1);background:rgba(0,255,136,.1);color:var(--g1);cursor:pointer;font-size:.8rem;font-family:inherit;font-weight:600;transition:all .15s;white-space:nowrap}
+.submit-btn:hover{background:rgba(0,255,136,.2);box-shadow:0 0 10px rgba(0,255,136,.15)}
+.contrib-notice{flex:1;font-size:.71rem;color:var(--txt3);line-height:1.65;min-width:220px}
+.contrib-notice strong{color:var(--txt2)}.contrib-toast{display:none;font-size:.75rem;color:var(--g1);margin-top:.5rem}
+.sec{display:flex;align-items:center;gap:.75rem;margin:2.5rem 0 1rem}
+.sec h2{font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);white-space:nowrap}
+.sec::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.nav-row{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;margin:1.25rem 0 .75rem}
+.tab-btn{padding:.3rem .9rem;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:.76rem;color:var(--txt2);transition:all .15s;font-family:inherit}
+.tab-btn:hover{border-color:var(--g2);color:var(--g1)}
+.tab-btn.on{background:linear-gradient(135deg,rgba(0,255,136,.15),rgba(191,95,255,.1));border-color:var(--g1);color:var(--g1);box-shadow:0 0 10px rgba(0,255,136,.2)}
+.srow{display:flex;gap:.75rem;align-items:center;margin-bottom:1.2rem}
+.swrap{flex:1;position:relative}
+.swrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.4;pointer-events:none}
+#si{width:100%;padding:.52rem .75rem .52rem 2.35rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--txt);font-size:.84rem;font-family:inherit;outline:none;transition:border-color .15s}
+#si:focus{border-color:var(--g2);box-shadow:0 0 12px rgba(0,255,136,.1)}#si::placeholder{color:var(--txt3)}
+.cnt{font-size:.74rem;color:var(--txt3);white-space:nowrap}
+.tw{overflow-x:auto;border-radius:var(--rl);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.81rem}
+thead th{padding:.62rem 1rem;font-size:.69rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--txt3);background:var(--surface);border-bottom:1px solid var(--border);text-align:left}
+tbody tr{border-bottom:1px solid rgba(0,255,136,.06);transition:background .1s}tbody tr:last-child{border-bottom:none}tbody tr:hover{background:rgba(0,255,136,.04)}
+td{padding:.78rem 1rem;vertical-align:top;line-height:1.55}
+.et{font-weight:600;color:var(--g1);font-size:.88rem}.zt{font-size:.73rem;color:var(--p1);margin-top:.14rem;letter-spacing:.03em}
+.den{color:var(--txt2);font-size:.79rem;line-height:1.65}
+.dzh{color:var(--txt3);font-size:.76rem;line-height:1.65;margin-top:.3rem;padding-top:.3rem;border-top:1px solid rgba(255,255,255,.05)}
+.pill{display:inline-block;padding:.13rem .6rem;border-radius:20px;font-size:.66rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.pb{background:rgba(0,255,136,.12);color:var(--g1);border:1px solid rgba(0,255,136,.3)}
+.ph{background:rgba(0,204,102,.1);color:#4dffb3;border:1px solid rgba(0,204,102,.25)}
+.pm{background:rgba(191,95,255,.12);color:var(--p1);border:1px solid rgba(191,95,255,.3)}
+.pt{background:rgba(255,100,180,.1);color:#ff80cc;border:1px solid rgba(255,100,180,.25)}
+.empty{text-align:center;padding:2.5rem;color:var(--txt3);font-size:.84rem}
+.nhint{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-bottom:.85rem}
+.hi{display:flex;align-items:center;gap:.42rem;font-size:.74rem;color:var(--txt3)}.hi svg{opacity:.6;flex-shrink:0}
+#cc{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;touch-action:none}
+#cv{display:block;width:100%;cursor:grab}#cv.drag{cursor:grabbing}
+.ctt{position:absolute;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:.52rem .82rem;font-size:.74rem;pointer-events:none;opacity:0;transition:opacity .15s;max-width:270px;z-index:10;box-shadow:0 4px 24px rgba(0,0,0,.6)}
+.te{font-weight:600;color:var(--g1);margin-bottom:.18rem}.tz{color:var(--p1);font-size:.71rem;margin-bottom:.28rem}
+.td{color:var(--txt2);line-height:1.5;font-size:.71rem}.tc{font-size:.67rem;color:var(--txt3);margin-top:.32rem;padding-top:.32rem;border-top:1px solid rgba(255,255,255,.07)}
+.cfoot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding:.6rem 1rem;border-top:1px solid var(--border);background:var(--bg2)}
+.cleg{display:flex;gap:.8rem;flex-wrap:wrap}.cli{display:flex;align-items:center;gap:.38rem;font-size:.71rem;color:var(--txt3)}.cld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.zctrls{display:flex;gap:.3rem}.zb{padding:.2rem .6rem;border-radius:var(--r);border:1px solid var(--border);background:transparent;cursor:pointer;font-size:.76rem;color:var(--txt2);font-family:inherit;transition:all .12s}.zb:hover{border-color:var(--g2);color:var(--g1)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+
+  <!-- TIER 1: Full project title -->
+  <div class="site-title-zh"><span class="g">酷</span>殘<span class="p">陣</span>線字彙表</div>
+  <div class="site-title-en">The Body's Tale of Mercy &amp; Vengeance Glossary</div>
+  <div class="site-sub">BOTAMEVE</div>
+
+  <!-- TIER 2: Project description -->
+  <div class="proj-desc">
+    <div class="proj-tag">About the project &nbsp;·&nbsp; 關於這個計畫</div>
+    <p>BOTAMEVE is a feminist fight club deeply inspired by Crip Theory, where members collectively examine the mercies and harms their bodies have endured. 酷殘陣線是一個深受「殘兒理論（Crip Theory）」啟發的女性主義戰鬥俱樂部。在這裡，成員們共同審視身體所承受過的慈悲與傷害。</p>
+  </div>
+
+</header>
+
+<div class="sec"><h2>Glossary 詞彙表</h2></div>
+
+<!-- Glossary intro now lives under the Glossary heading -->
+<div class="intro" style="margin-bottom:1.5rem">
+  <div>
+    <div class="intro-lbl">About this glossary</div>
+    <p>Bodily injustice takes many forms — it can emerge from intimate relationships, social manipulation, structural power, and the quiet violence of norms we are taught to accept without question. This vocabulary exists to help us name what we face: the mechanisms of control, the erosions of self, and the systems that tell certain bodies they do not belong.</p>
+    <p>Healing is not a straight line. It moves three steps forward and two steps back. That is why not every word here points toward light — some name the wound before naming its remedy. We offer these terms to sit with the full complexity of what reclaiming a body, and a life, actually demands.</p>
+  </div>
+  <div class="intro-divider"></div>
+  <div>
+    <div class="intro-lbl">關於這份詞彙表</div>
+    <p>身體不正義呈現著多種樣貌——它可能源自親密關係、社會操弄、權勢結構，或是那些我們被教導必須無條件接受的規範，這些都是無聲的暴力。這套詞彙的存在，是為了幫助我們為辨認自身遭遇。</p>
+    <p>療癒從來不是一條直線。它總是前進三步，又退後兩步。這也是為什麼，這裡並非每個字詞都指向光明——有些詞彙在給出解方之前，必須先為傷口命名。我們提供這些語彙，是為了與這份複雜同在。</p>
+  </div>
+</div>
+<div class="nav-row" id="tabRow"></div>
+<div class="srow">
+  <div class="swrap">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="si" placeholder="Search terms, definitions… / 搜尋詞彙、定義…">
+  </div>
+  <span class="cnt" id="cnt"></span>
+</div>
+<div id="tout"></div>
+
+<div class="sec"><h2>Vocabulary Network 詞彙連結圖</h2></div>
+<div class="nhint">
+  <div class="hi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/></svg><span>Hover a node — connected terms glow</span></div>
+  <div class="hi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 9 2 12 5 15"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/></svg><span>Click &amp; drag to pan</span></div>
+  <div class="hi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg><span>Scroll or pinch to zoom</span></div>
+  <div class="hi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg><span>Reset to return to full view</span></div>
+</div>
+<div id="cc">
+  <canvas id="cv"></canvas>
+  <div class="ctt" id="ctt"><div class="te" id="tte"></div><div class="tz" id="ttz"></div><div class="td" id="ttd"></div><div class="tc" id="ttc"></div></div>
+  <div class="cfoot">
+    <div class="cleg">
+      <div class="cli"><div class="cld" style="background:#00ff88"></div>Basic 基礎</div>
+      <div class="cli"><div class="cld" style="background:#4dffb3"></div>Healing 療癒</div>
+      <div class="cli"><div class="cld" style="background:#bf5fff"></div>Manipulation 操控</div>
+    </div>
+    <div class="zctrls">
+      <button class="zb" id="zIn">＋ Zoom in</button>
+      <button class="zb" id="zOut">－ Zoom out</button>
+      <button class="zb" id="zReset">↺ Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="sec"><h2>Contribute 提交詞彙</h2></div>
+<div class="contrib-box">
+  <div class="contrib-title">Submit a term &nbsp;/&nbsp; 提交新詞彙</div>
+  <div class="contrib-sub">Know a term that belongs here? Add it below. / 你知道某個應該收錄在這裡的詞彙嗎？在下方提交。</div>
+  <div class="contrib-grid">
+    <div class="fld">
+      <label>English term</label>
+      <input type="text" id="f-en" placeholder="e.g. Compulsory Normality">
+    </div>
+    <div class="fld">
+      <label>中文詞彙</label>
+      <input type="text" id="f-zh" placeholder="例：強制正常化">
+    </div>
+    <div class="fld">
+      <label>Category 分類</label>
+      <select id="f-cat">
+        <option value="Basic">Basic 基礎</option>
+        <option value="Healing">Healing 療癒</option>
+        <option value="Manipulation">Manipulation 操控</option>
+        <option value="Other">Other 其他</option>
+      </select>
+    </div>
+    <div class="fld">
+      <label>Your name / handle (optional)</label>
+      <input type="text" id="f-name" placeholder="Anonymous / 匿名">
+    </div>
+    <div class="fld contrib-full">
+      <label>Definition (EN) — English definition</label>
+      <textarea id="f-den" placeholder="A brief, clear definition in English…"></textarea>
+    </div>
+    <div class="fld contrib-full">
+      <label>定義（中文）— 中文定義</label>
+      <textarea id="f-dzh" placeholder="簡潔清晰的中文定義…"></textarea>
+    </div>
+  </div>
+  <div class="contrib-actions">
+    <button class="submit-btn" onclick="submitContrib()">Submit 提交 →</button>
+    <div class="contrib-toast" id="contrib-toast">✓ 已收到，感謝你的貢獻！ Thank you — received.</div>
+  </div>
+  <div class="contrib-notice" style="margin-top:.85rem">
+    <strong>Open contribution notice:</strong> This glossary is open-source and community-editable, like Wikipedia. Submitted terms may be modified, reworded, or removed by the editorial team if they do not align with the project's spirit, accuracy standards, or scope. By submitting, you agree that your contribution may be adapted and published under the same open license as this glossary.
+    <br><br>
+    <strong>開放貢獻聲明：</strong>本詞彙表採開放社群編輯模式，如同維基百科。若提交的詞彙不符合計畫精神、資訊正確性或收錄範圍，編輯團隊保留修改或刪除的權利。提交即表示你同意你的內容可能被改寫，並以本詞彙表相同的開放授權方式發布。
+  </div>
+</div>
+
+</div><!-- end .wrap -->
+<script>
+
+const RAW=[
+["Basic","Ableism","健全主義","Systemic discrimination favoring able-bodied people; the belief that disability makes a person inferior.","健全主義是一種將非障礙身體視為優越、正常的社會偏見或歧視。"],
+["Basic","Ableist","健全至上者","Behaviors, language, or systems that devalue or discriminate against people with disabilities.","形容相信健全至上，非障礙身體更加優越的人。"],
+["Basic","Crip","殘兒","A historically derogatory slur reclaimed by the disability community as a political identity to resist 'normal' body standards.","對「cripple」（跛）的重新詮釋，從貶義語轉變為自我認同和政治主張的詞語。"],
+["Basic","Crip Theory","殘兒理論","An academic framework merging Disability Studies and Queer Theory, critiquing the societal demand for compulsory able-bodiedness.","從身心障礙者和酷兒的交會點出發，探討身體、社會規範和身心障礙經驗的學術理論。"],
+["Basic","Disabled","身心障礙者","In the Social Model, individuals limited by societal barriers rather than solely by physical or mental impairments.","指身心上具有障礙的人群，強調社會環境如何影響障礙的形成。"],
+["Basic","Heteronormativity","異性戀本位","The societal worldview assuming heterosexuality is the default, natural, and preferred sexual orientation.","將異性戀視為唯一正常的性取向，壓迫非異性戀性向和性別表現的人群。"],
+["Basic","Queer","酷兒","An inclusive umbrella term for those who do not conform to traditional gender and orientation norms.","一個包容性廣泛的詞語，用於描述不符合傳統性別和性取向規範的人群。"],
+["Basic","Queer Theory","酷兒理論","Challenges heteronormativity and gender binaries; advocates for diversity and fluidity in gender and orientation.","挑戰異性戀規範性和性別二元制的學術理論，倡導性別和性取向的多元性及流動性。"],
+["Healing","Affirmative Consent","積極同意","Requires verbal, positive agreement in every stage of sexual interaction. Silence or passivity does not qualify.","積極同意要求在每次性互動的每個環節中，必須獲得口頭且正面的同意。沒有拒絕並不符合標準。"],
+["Healing","Crip Time","殘兒時間","The pace and time management of disabled people may differ from able-bodied norms, challenging productivity expectations.","強調殘兒者的生活節奏可能與健全人不同，挑戰社會對時間和生產力的期望。"],
+["Healing","Access Intimacy","無障礙親密感","The unique closeness felt when interacting with individuals or environments that understand one's accessibility needs.","指與理解和尊重殘兒需求的個人或環境互動時，所產生的特殊親密感。"],
+["Healing","Cripistemology","殘兒知識論","Critiques able-centrism in traditional knowledge, emphasizing disability experience as a vital perspective.","批判傳統知識體系中的健全中心主義，強調殘兒經驗作為理解世界的重要視角。"],
+["Healing","Disability Justice","殘兒正義","Advocates for mutual aid, cross-disability solidarity, and collective resistance to oppression.","倡導社會正義視角，強調互助、跨障礙聯合及抗拒壓迫的共同努力。"],
+["Healing","Mad Pride","瘋狂驕傲","Challenges the stigma of mental disabilities and embraces mental illness as part of identity.","挑戰對心理障礙的污名化，並擁抱精神疾病作為身份的一部分。"],
+["Healing","Disabled Joy","殘兒喜悅","Embraces and celebrates the positive experiences of disabled identity, challenging negative narratives.","擁抱和慶祝殘兒身份快樂與正面的經驗，挑戰負面敘述和促進自我療癒。"],
+["Healing","Spoon Theory","湯匙理論","Describes the limited daily energy of those with disabilities or chronic illnesses as finite spoons.","用來描述殘兒者或慢性病患者每天精力有限的情況。"],
+["Healing","Habilitation vs. Rehabilitation","創建 vs. 復健","Habilitation focuses on developing new skills and adaptations rather than returning to a normal state.","創建著重於發展新技能和適應方式，而非如復健，恢復到「正常」狀態。"],
+["Healing","Emotional Flashbacks","情緒重現","Sudden recurrence of emotional memories, feeling as if reliving past trauma.","情緒性回憶突然重現，感覺自己重回過去的創傷場景。"],
+["Healing","Vicious Inner Critic","暴虐的內在找碴鬼","Persistent negative self-criticism leading to self-doubt and psychological stress.","內心或外界持續對自我的負面批評，帶來自我懷疑和心理壓力。"],
+["Healing","Toxic Shame","毒性羞恥","Internalized deep shame often resulting in self-criticism and self-negation.","內化的深層羞恥感，經常導致自我批判和自我否定。"],
+["Healing","Self-Abandonment","自我拋棄","Ignoring one's own needs and feelings to over-appease others, often at self-expense.","忽視自己的需求和感受，過度迎合他人而損害自我。"],
+["Healing","Social Anxiety","社交焦慮","Extreme discomfort and fear in social situations, often with avoidance behavior.","對社交場合感到極度不安和恐懼，常伴隨回避行為。"],
+["Healing","Intense Loneliness and Abandonment Feelings","高度的孤獨感和遺棄感","Intense feelings of loneliness and being abandoned, making it hard to connect.","強烈的孤獨感和被拋棄感，難以建立或維持情感連結。"],
+["Healing","Fragile Self-Esteem","脆弱的自尊","Easily wounded self-worth, leading to feelings of worthlessness.","自尊極易受挫和動搖，容易感到無價值。"],
+["Healing","Attachment Disorder","依附失調","Emotional dysregulation or over-dependence in relationships, affecting social interaction.","在依戀關係中出現情感失調或過度依賴，影響正常的社交互動。"],
+["Healing","Developmental Stagnation","發展停滯","Trauma causing psychological or emotional stagnation.","創傷導致個人在心理或情感感到停滯不前。"],
+["Healing","Relationship Difficulties","關係困難","Trouble building or keeping relationships, often feeling misunderstood or isolated.","難以建立或維持關係，常感到被誤解或孤立。"],
+["Healing","Extreme Mood Swings","極端的情緒變化","Experiencing intense mood swings like anger, sadness, and anxiety in alternation.","經歷劇烈的情緒波動，如憤怒、悲傷和焦慮反覆交替。"],
+["Healing","Dissociation","解離","Fragmentation of identity or consciousness, often trauma-related, used to avoid painful memories.","自我認知、意識或記憶上的崩解，通常與壓力或創傷經驗有關。"],
+["Healing","Hyper-reactivity to Stress","極易被引發戰或逃反應","Overreacting to stress with anxiety, panic, or loss of control.","面對壓力情境時過度反應，如焦慮、恐慌或失控行為。"],
+["Healing","Over-sensitivity to Stressful Situations","對有壓力的情況過度敏感","Being particularly sensitive to stress or conflict, feeling threatened easily.","對壓力或衝突情境特別敏感，容易感到不安或被威脅。"],
+["Healing","Suicidal Ideation","自殺意念","Recurring thoughts or plans to end one's life due to unbearable pain.","反覆出現想要結束生命的想法或計畫，常因無法承受內心痛苦。"],
+["Healing","Boundary Setting","設立界限","Clearly defining psychological and emotional limits to protect oneself from abuse.","明確劃定個人心理和情感上的界限，保護自己不受虐待者的負面影響。"],
+["Healing","Self-Validation","自我認可","Acknowledging and accepting one's feelings without needing outside approval.","承認和接納自己的感受和經歷，不依賴他人認可來確立自我價值。"],
+["Healing","Grounding Techniques","扎根技巧","Using sensory techniques to stay present, stabilizing emotions against trauma reactions.","使用各種感官技術將注意力集中於當下，幫助穩定情緒。"],
+["Healing","Assertiveness","果斷","Expressing needs and feelings clearly and directly to avoid manipulation.","清楚和直接地表達自己的需求和感受，避免被虐待者操控。"],
+["Healing","Cognitive Reframing","認知重構","Changing negative perceptions of experiences to cultivate positive thinking.","通過轉換對事件的看法，改變對自我和經歷的負面認知。"],
+["Healing","Emotional Regulation","情緒調節","Identifying and managing emotional responses to reduce trauma-induced volatility.","學習辨識和管理自己的情緒反應，減少因虐待或創傷引起的情緒波動。"],
+["Healing","No-Contact Rule","斷聯規則","Cutting all ties with an abuser to avoid further manipulation and harm.","切斷與虐待者的所有聯繫，避免進一步的操控和情感傷害。"],
+["Healing","Self-Compassion","自我同理","Showing understanding and empathy toward one's own pain instead of self-blame.","對自己的困境和痛苦表示理解和同理，而不是自責。"],
+["Healing","Trauma-Informed Care","創傷知情關懷","Acknowledging trauma's impact and interacting in gentle, supportive ways during recovery.","在療癒過程中承認創傷的影響，並以溫和和支持性的方式進行互動。"],
+["Healing","Self-Empowerment","自我賦權","Helping individuals regain control over their lives and self-efficacy.","幫助個人恢復對生活的控制感，強化自我效能感。"],
+["Healing","Mindfulness","正念","Focusing on the present experience, observing thoughts and feelings without judgment.","專注於當下的經驗，而不帶評價地觀察自己的感受和想法。"],
+["Healing","Validation Seeking","尋求肯定","Actively seeking understanding and sharing experiences with others.","積極尋求支持和理解的管道，與他人分享經歷。"],
+["Healing","Gaslight Resilience","抗煤氣燈效應","Increasing the ability to recognize manipulation to protect self-perception from distortion.","提高對心理操控行為的識別能力，保護自己不被他人的否定和扭曲影響自我認知。"],
+["Healing","Distress Tolerance","提高痛苦容忍度","Learning to endure pain in difficult situations without harmful reactions.","學習在面對困難情境時忍受痛苦，並且不會做出損害自己的反應。"],
+["Healing","Radical Acceptance","徹底接受","Accepting current reality, including pain and unchangeable facts.","接受當前現實，包括痛苦和不可改變的事實。"],
+["Healing","Hypervigilance","過度警覺","A constant state of high tension and over-sensitivity to potential threats.","持續處於高度緊張和警覺狀態，對潛在的威脅過度敏感。"],
+["Healing","Emotional Numbing","情感麻木","Losing response to external stimuli or inner feelings to avoid pain.","對外界刺激或內心感受失去反應，避免感受痛苦。"],
+["Healing","Flashbacks","閃回","Feelings or memories of a traumatic event resurfacing as if happening again.","重現創傷性事件的感覺或記憶，感覺事件正在重新發生。"],
+["Healing","Survivor's Guilt","倖存者內疚","Feeling guilty for surviving when others did not.","感到因自己倖存而愧疚，特別是當其他人未能幸免於難時。"],
+["Healing","Avoidance","迴避","Steering clear of people, places, or situations associated with trauma.","避免與創傷有關的人、場所或情境。"],
+["Healing","Triggers","觸發點","Specific sounds, smells, images, or situations that spark traumatic memories.","特定的聲音、氣味、影像或情境會觸發創傷記憶。"],
+["Healing","Intrusive Thoughts","侵入性思維","Recurring painful memories or thoughts that feel uncontrollable.","反覆出現的痛苦記憶或想法，常令創傷者感到無法控制。"],
+["Healing","Re-experiencing","重新經歷","Reliving a traumatic event, experiencing the original fear and pain.","持續重溫創傷事件，感覺像是再次經歷當時的恐懼和痛苦。"],
+["Healing","Emotional Dysregulation","情緒失調","Difficulty controlling and regulating emotions under stress.","難以控制和調節情緒，容易受到壓力影響。"],
+["Healing","Hyperarousal","過度喚起","Prolonged state of high tension or startle response even after the stressor is gone.","長期處於高壓或驚嚇狀態，即使創傷或壓力源消失，仍感到緊張、易怒或難以放鬆。"],
+["Healing","Hopelessness","絕望感","Feeling no hope for the future and losing motivation for life.","感到未來毫無希望，對生活失去動力和興趣。"],
+["Healing","Nightmares","惡夢","Recurring dreams of traumatic events causing sleep disturbance.","經常在夢境中重現創傷事件，造成睡眠困擾。"],
+["Healing","Shame Spiral","羞恥螺旋","Deep shame from trauma, leading to persistent self-criticism.","因創傷引發的深層羞恥感，持續的自我批評和自責。"],
+["Healing","Grief","哀傷","Mourning the loss of safety, identity, or past life.","對於失去的安全感、身份、或過去生活的哀悼。"],
+["Healing","Queer Resilience","酷兒韌性","The survival and rebuilding power of the queer community against exclusion and oppression.","強調酷兒社群在面對社會排斥、歧視和壓迫時所展現的生存能力和自我重建的力量。"],
+["Healing","Chosen Family","選擇性家庭","Support networks formed by non-biological close relationships as emotional sources.","由非血緣關係的親密關係所組成的支持網絡，成為重要的情感支持來源。"],
+["Healing","Gender Performativity","性別展演","Gender is not innate but performed through actions, language, and social interaction.","性別不是內在固定的本質，而是通過行為、語言和社會互動持續「表演」出來的。"],
+["Healing","Queer Utopia","酷兒烏托邦","Creating a more diverse and inclusive world free from heteronormative oppression.","擺脫異性戀霸權和社會壓迫，創造出一個接受多元性和包容性更強的世界。"],
+["Healing","Identity Reclamation","身份回收","Reclaiming and rebuilding identities that were excluded or erased by society.","重新接納和重建自己被社會排斥或抹殺的身份。"],
+["Healing","Queer Intimacy","酷兒親密性","Non-traditional relationship forms that challenge family/marriage norms for healing.","非傳統的親密關係形式，挑戰傳統家庭和婚姻制度，促進情感療癒。"],
+["Healing","Intersectionality","交織性","How the overlap of gender, orientation, race, and class affects individual experience.","性別、性取向、種族、階級等多重身份的交織如何影響個體的經驗。"],
+["Healing","Microaffirmations","微肯定","Affirming oneself in small, powerful ways to rebuild self-worth and safety.","通過小而有力的方式肯定和支持自己，重建自我價值感和安全感。"],
+["Healing","Queer Failure","酷兒失敗","Challenging definitions of success and embracing choices deemed failures by heteronormative standards.","特意挑戰社會對成功的定義，擁抱不符合異性戀規範認為是「失敗」的選擇。"],
+["Healing","Disidentification","非認同","Consciously rejecting identity categories or labels imposed by society.","有意識地拒絕社會所強加的身份分類或標籤。"],
+["Healing","Safe Space","安全空間","An environment where queer individuals can be free from discrimination to promote healing.","提供酷兒個體可以不受歧視和排斥的環境，促進情感和心理的療癒。"],
+["Healing","Queer Grief","酷兒哀傷","Mourning the social exclusion, discrimination, or violence faced due to one's identity.","對於自身身份被社會排斥、歧視或暴力對待的哀傷。"],
+["Healing","Radical Self-Care","激進自我照護","Viewing self-care as an act of resistance against oppression.","將自我照護視為一種抵抗壓迫的行為，強調自我關懷的重要性。"],
+["Healing","Queer Joy","酷兒喜悅","Embracing and celebrating the pleasure of queer identity to promote healing.","擁抱和慶祝酷兒身份的愉悅感，挑戰負面敘述和促進自我療癒。"],
+["Healing","Queer Liberation","酷兒解放","Seeking complete freedom from heteronormativity and gender binary norms.","擺脫異性戀霸權和性別二元規範的束縛，追求全面的性別和性取向自由。"],
+["Healing","Non-Binary Resistance","非二元抵抗","Challenging the gender binary and embracing gender diversity.","對抗性別二元制度的壓迫，擁抱性別多樣性。"],
+["Healing","Gender Euphoria","性別愉悅感","The deep joy felt when expressing one's authentic gender identity.","當個人表達出符合自身真實性別認同時，所感受到的深刻喜悅和滿足感。"],
+["Healing","Queer Antagonism","酷兒對抗","Direct confrontation and resistance against social norms and heteronormativity.","針對社會規範和異性戀霸權的直接對抗和反抗行為。"],
+["Healing","Pronoun Affirmation","代詞肯定","Respecting and using chosen pronouns to affirm gender identity.","尊重和使用個人所選擇的代詞，促進性別認同的肯定和自我療癒。"],
+["Healing","Sexual Fluidity","性取向流動性","Sexual orientation is not fixed and may change over time or context.","性取向並非固定不變，而是可能隨時間和情境而改變。"],
+["Healing","Deconstructing Norms","解構常規","Actively questioning and deconstructing deep-seated social norms of body and mind.","主動質疑和拆解社會中根深蒂固對身體跟心靈的常規。"],
+["Healing","Queering Spaces","酷異化空間","Transforming hetero-centric spaces into environments inclusive of diverse genders and orientations.","將異性戀中心的空間轉變為包容多元性別和性取向的環境。"],
+["Healing","Trans Visibility","跨性別可見性","Increasing the visibility and social recognition of transgender people.","提升跨性別群體的能見度和社會認可，挑戰隱藏和壓抑的社會壓力。"],
+["Healing","Queer Worldmaking","建造酷世界","Building a world centered on queer identity through art, culture, and community.","透過藝術、文化和社群行動，構建以酷兒身份為主體的世界。"],
+["Healing","Gender Dysphoria","性別焦慮症","Distress caused by a mismatch between gender identity and biological sex.","由於性別身份與生理性別不符而產生的痛苦。"],
+["Healing","Queer Self-Expression","酷兒自我表達","Freely expressing gender and orientation through clothing, behavior, and art.","通過穿著、行為、藝術等方式自由表達自己的性別和性取向。"],
+["Healing","Queer Kinship","酷兒親緣關係","Intimate networks built on emotion and support beyond biological or legal definitions.","超越血緣和法律的家庭定義，由情感和支持建構而成的親密網絡。"],
+["Healing","Rejection Sensitivity","拒絕敏感性","Being particularly sensitive to rejection due to repeated social exclusion.","由於經歷過多次社會排斥或歧視而對拒絕特別敏感。"],
+["Healing","Queer Temporality","酷兒時間性","Rejecting traditional heteronormative timelines to explore non-linear queer life.","拒絕遵循傳統異性戀時間線，探索酷兒生活的非線性和多樣性時間表現。"],
+["Healing","Queer Allyship","酷兒盟友行動","Proactive support and advocacy for queer rights by non-queer individuals.","非酷兒個體主動支持和擁護酷兒權益的行為。"],
+["Healing","Rainbow Capitalism","彩虹資本主義","Corporations using queer symbols for marketing while only superficially supporting the community.","企業利用酷兒符號進行商業宣傳和營銷，表面上支持酷兒群體。"],
+["Healing","Queer Narratives","酷兒敘事","Telling stories through the lens and experiences of the queer community.","酷兒群體透過自己的視角和經驗講述故事。"],
+["Healing","Decolonizing Queer Theory","酷兒理論的去殖民化","Challenging Western-centrism in queer theory to be more inclusive of diverse cultures.","對抗酷兒理論中的西方中心主義，努力使酷兒理論更加包容多元文化。"],
+["Healing","Polyamory","多元戀愛","A consensual and transparent non-monogamous relationship model.","一種同意並透明的非單配偶關係模式。"],
+["Healing","Queer Ecologies","酷兒生態學","Linking gender, orientation, and ecology to advocate for a more inclusive ecological view.","將性別、性取向和生態學聯繫起來，倡導更包容的生態觀。"],
+["Healing","Drag","變裝","Drag is not just art; it is a direct challenge to gender norms.","變裝不僅是一種藝術表達，更是對性別規範的挑戰。"],
+["Healing","Hunting","創傷糾纏","For victims, trauma lingers like a ghost, haunting the path to recovery.","對受害者而言，創傷如幽魂般揮之不去，糾纏於受害者的修復之路。"],
+["Healing","Adaptive Resistance","適應性抗拒","Disabled people show strength by creatively overcoming social and environmental barriers.","殘兒者通過創造性地應對社會和環境中的障礙，表現出拒絕被排除的力量。"],
+["Manipulation","Self-gaslighting","自我煤氣燈效應","Victims internalize the abuser's manipulation, leading to self-doubt and self-denial.","受害者內化施虐者的操控行為，自我質疑、自我否定。"],
+["Manipulation","Gaslighting","煤氣燈效應","Abusers distort reality to make victims doubt their own memory, perception, or judgment.","施虐者通過扭曲現實，讓受害者對自己的記憶、感知或判斷產生懷疑。"],
+["Manipulation","Future Faking","假未來","Abusers use lies about a bright future to manipulate a victim's behavior and feelings.","施虐者通過描繪美好未來的謊言來操控受害者的行為和感情。"],
+["Manipulation","Bread Crumbing","麵包屑","Abusers give occasional attention or hope but never truly commit, maintaining dependency.","施虐者給予受害者偶爾的關注或希望，但從不真正投入，維持受害者的依賴。"],
+["Manipulation","Fake Apologies","假道歉","Pretending to apologize without taking responsibility, used to de-escalate or avoid blame.","假裝道歉卻不真正承擔責任，常用來減輕矛盾或逃避責任。"],
+["Manipulation","Hoovering","吸塵器效應","When a victim tries to leave, the abuser uses false promises or remorse to pull them back.","當受害者試圖脫離時，施虐者以虛假的承諾或悔意試圖將受害者吸引回來。"],
+["Manipulation","Scapegoating","替罪羊","Shifting responsibility for one's own mistakes or negative behavior to the victim or others.","將自己的錯誤或負面行為責任轉移到受害者或他人身上。"],
+["Manipulation","Mirroring","鏡像","Mimicking a victim's behavior and values to gain trust, used as a manipulation tactic.","模仿受害者的行為和價值觀以贏得信任，但實際上是一種操控手段。"],
+["Manipulation","Baiting","下餌","Deliberately provoking victims to lose control, then using their reaction as an excuse for attack.","刻意挑釁受害者，讓他們在情緒上失控，然後將其行為作為攻擊的藉口。"],
+["Manipulation","Flying Monkeys","飛猴","Abusers use others to manipulate and attack the victim, often without those people realizing it.","施虐者利用他人幫助操縱和攻擊受害者，通常這些人未意識到自己被操控。"],
+["Manipulation","Trauma Bonding","創傷羈絆","Victims form a strong emotional attachment to the abuser after persistent manipulation and abuse.","受害者在經歷持續的操控和虐待後，與施虐者形成強烈情感依附。"],
+["Manipulation","Devalue","貶低","Abusers persistently negate a victim's worth, making them feel worthless.","施虐者對受害者的價值進行持續否定，使其感到無價值。"],
+["Manipulation","Discard","丟棄","The abuser suddenly cuts off contact once they feel the victim no longer meets their needs.","施虐者一旦覺得受害者無法再滿足其需求，便會突然斷絕聯繫。"],
+["Manipulation","Triangulation","三角化","The abuser introduces a third party into the relationship to create exclusion and jealousy.","施虐者在關係中加入第三者，以製造受排擠、站邊、嫉妒和不穩定的情緒。"],
+["Manipulation","Narcissistic Supply","自戀補給品","The need for constant attention, praise, or emotional reaction to satisfy self-centered needs.","自戀者需要持續的關注、讚美或情緒反應來滿足自我中心需求。"],
+["Manipulation","Enabling","縱容","Others unintentionally supporting or tolerating an abuser's behavior, allowing it to continue.","他人無意中支持或容忍施虐者的行為，使其持續發生。"],
+["Manipulation","Narcissistic Injury","自戀傷害","Intense anger or humiliation felt when a narcissist feels threatened or questioned.","當自戀者感覺受到威脅或質疑時所感受到的強烈憤怒或羞辱。"],
+["Manipulation","Pseudo Spirituality","假靈性","Using spiritual or psychological terms to manipulate and justify misconduct.","假借靈性或心理學術語來操控和合理化不當行為。"],
+["Manipulation","Cat-fishing","交友詐騙","Creating a false relationship with a fake identity to deceive for affection or money.","以假身份建立虛假關係以騙取感情或金錢。"],
+["Manipulation","Amnesia","失憶","The abuser pretends to forget their actions or promises to deny responsibility.","施虐者假裝忘記自己的行為或承諾，否認責任。"],
+["Manipulation","Cognitive Dissonance","認知失調","Psychological stress and confusion felt by a victim due to the abuser's contradictory actions.","受害者因為施虐者的矛盾行為而感到心理壓力與困惑。"],
+["Manipulation","Passive Aggressive","消極攻擊","Expressing hostility indirectly or covertly, such as through coldness or procrastination.","通過間接、隱蔽方式表達敵意，如冷漠或拖延。"],
+["Manipulation","Invalidation","作廢","Denying or belittling a victim's feelings or experiences, making them feel unheard.","否認或輕視受害者的感受或經歷，使其感到被忽視、不重要。"],
+["Manipulation","Gift Giving","送禮","Abusers use gifts or excessive praise to control the victim and maintain dependency.","施虐者以禮物收買或操控受害者，維持對方的依賴。"],
+["Manipulation","Mind Reading","讀心","Pretending to understand the other person's mind to control or strike at them.","假裝理解對方的內心，實際上是為了控制或打擊對方。"],
+["Manipulation","Estrangement","疏離","The abuser intentionally creates a sense of distance, making the victim feel isolated.","施虐者故意製造疏遠感，使受害者感到孤立無援。"],
+["Manipulation","Codependency","共依存","An unhealthy relationship pattern of emotional over-dependence on others for self-worth.","一種不健康的關係模式，個體在情感上過度依賴他人來獲得自我價值感和滿足感。"],
+["Manipulation","Manipulation","操縱","Carefully designed actions and rhetoric used to control others' emotions and actions.","精心設計的行為和話術，用以控制他人的情感和行動。"],
+["Manipulation","Word Salad","語言沙拉","Using confusing language to muddle issues or weaken the listener's reason.","使用混亂或無意義的語言來迷惑、逃避問題或削弱對話者的理智。"],
+["Manipulation","Coercive Control","脅迫性控制","Using threats, manipulation, and isolation to fully control a victim's life.","通過威脅、操控、孤立等手段全面控制受害者的生活。"],
+["Manipulation","Rage","怒火","The abuser's sudden emotional outbursts to intimidate and control the victim.","施虐者突然爆發情緒來威嚇和控制受害者。"],
+["Manipulation","Projection","投射","Projecting negative traits or behaviors one denies in oneself onto the victim.","將自己不承認的負面特質或行為投射到受害者身上。"],
+["Manipulation","Love Bombing","愛情轟炸","Rapidly building an emotional bond through excessive praise and attention in order to then manipulate.","過度讚美和關注來迅速建立情感連結，然後進行操控。"],
+["Manipulation","Silent Treatment","冷處理","Punishing or controlling a victim by refusing to communicate.","通過拒絕交流來懲罰、進以控制受害者。"],
+["Manipulation","Stonewalling","石牆","Intentionally shutting down emotion and communication during conflict, deepening alienation.","在衝突或對話中，有意封閉情緒和交流、回避、無視或拒絕參與溝通。"],
+["Manipulation","Blame Shifting","責任轉移","Shifting responsibility for one's own mistakes or misconduct onto others.","將自己的錯誤或不當行為責任轉移給他人。"],
+["Manipulation","Smear Campaign","抹黑活動","Spreading rumors and lies to damage a victim's reputation.","散佈謠言和謊言來損害受害者的聲譽。"],
+["Manipulation","Emotional Blackmail","情感勒索","Using emotional threats—fear, obligation, or guilt—to force a victim to comply.","以情感威脅來強迫受害者服從，通常以恐懼、義務或罪惡感為手段。"],
+["Manipulation","Gaslighting by Proxy","代理煤氣燈效應","Manipulating a victim through others using gaslighting techniques.","通過他人對受害者進行煤氣燈效應的操控。"],
+["Manipulation","Reactive Abuse","反應性虐待","The manipulator triggers a victim's emotional outburst and then blames them for their reaction.","操縱者觸發受害者情緒失控，然後指責受害者的反應不當。"],
+["Manipulation","DARVO","否認、攻擊、顛倒角色","Deny the behavior, Attack the accuser, and Reverse Victim and Offender roles.","否認錯誤，攻擊指控者，並顛倒受害者和施虐者的角色。"],
+["Manipulation","Isolation","孤立","Deliberately isolating a victim from their support system to increase dependency on the abuser.","刻意隔離受害者，使其脫離支持系統，增加對施虐者的依賴。"],
+["Manipulation","Grooming","培養操控","Gradually building trust and control to facilitate later manipulation or abuse.","逐步建立信任和控制以便於後續操控或虐待受害者。"],
+["Manipulation","Love Withdrawal","愛的撤回","Punishing or controlling behavior by withdrawing love and support.","通過撤回愛和支持來懲罰或控制受害者的行為。"],
+["Manipulation","Emotional Withholding","情感保留","Intentionally failing to provide emotional support, making the victim feel isolated or punished.","刻意不提供情感支持，讓受害者感到孤立或被懲罰。"],
+["Manipulation","Jekyll and Hyde","雙面性格","Displaying extreme dual personalities, alternating between good and evil to manipulate others.","表現出極端的雙面性格，以善與惡的交替操控他人。"],
+["Manipulation","Denial","否認","Refusing to admit the facts of one's behavior and blaming the victim.","拒絕承認或接受自己行為的事實，並把問題歸咎於受害者。"],
+["Manipulation","Shaming","羞辱","Manipulating a victim's emotions and behavior by making them feel ashamed.","透過讓受害者感到羞恥來操控他們的情緒和行為。"],
+["Manipulation","Guilt Tripping","罪惡感操控","Making a victim feel guilty to control them or force compliance.","讓受害者感到內疚以控制或讓他們服從。"],
+["Manipulation","Emotional Sabotage","情感破壞","Intentionally undermining a victim's efforts or emotions to make them feel helpless.","刻意破壞受害者的努力或情感，令其感到無助或被打擊。"],
+["Manipulation","Pathological Lying","病態撒謊","Constant lying to maintain control over others or hide the truth.","不斷地撒謊以維持對他人的控制或掩蓋真相。"],
+["Manipulation","Social Gaslighting","社會煤氣燈效應","Reality distortion by a group or social environment, causing an individual to doubt their perception.","群體或社會環境對個人進行現實扭曲，使其懷疑自己的感知、記憶和價值觀。"],
+["Manipulation","Mob Mentality","暴民心態","Losing independent judgment under group pressure and following the group's behavior or beliefs.","個人在群體壓力下失去獨立判斷，從而跟隨群體的行為或信念。"],
+["Manipulation","Groupthink","集體錯覺","Group members ignoring individual judgment to maintain harmony, leading to irrational decisions.","群體成員為了保持一致而忽略個別判斷和批判性思維，導致不合理的決策。"],
+["Manipulation","Moral Panic","道德恐慌","Media or leaders exaggerating an issue to cause public fear toward a specific group.","媒體或領導者誇大某個問題，引起大眾恐慌和對特定群體的負面情緒。"],
+["Manipulation","Public Shaming","公眾羞辱","Using social media or public platforms to humiliate an individual, causing social exclusion.","利用社交媒體或其他公開平台羞辱或攻擊個人，造成社會排斥。"],
+["Manipulation","Social Proof Manipulation","操控社會認同","Using others' behaviors or opinions to influence an individual's decision.","利用他人行為或意見來影響個人的決定，常見於廣告和社交媒體。"],
+["Manipulation","Echo Chamber Effect","回聲室效應","Only being exposed to information that aligns with one's views, reinforcing beliefs.","個人只接觸與自己觀點一致的信息，增強信念且排斥相反意見。"],
+["Manipulation","Fearmongering","恐懼散佈","Exaggerating or fabricating threats to manipulate public emotion and behavior.","誇大或虛構威脅來操控大眾情緒和行為。"],
+["Manipulation","Toxic Positivity","有毒的正能量","Forcing others to ignore negative emotions and real hardships.","強迫他人忽視負面情緒和真實困境，營造一種無法持久的樂觀假象。"],
+["Manipulation","Virtue Signaling","美德信號","Publicly displaying moral stances for social approval rather than genuine moral conviction.","公開展示道德立場以獲得社會認可，而非出於真實的道德信念。"],
+["Manipulation","Astroturfing","偽草根運動","Creating fake grassroots support by pretending to be the voice of the public to influence opinion.","營造虛假的草根支持，通過假裝公眾的聲音來影響公眾輿論。"],
+["Manipulation","Consensus Cracking","共識瓦解","Intentionally spreading false information to split group consensus and weaken opponents.","故意散佈錯誤或誤導性的信息以分裂群體的共識，削弱對手或異見者的力量。"],
+["Manipulation","Gaslighting by Media","媒體煤氣燈效應","Media manipulating information and creating bias to make the public doubt their own judgment.","媒體通過操縱信息、篩選事實和製造偏見，讓公眾對自身的判斷和現實感到混淆或懷疑。"],
+["Manipulation","Nudging","溫和推動","Subtly guiding behavior by designing choice environments without obvious coercion.","通過設計選擇環境來微妙地引導人們的行為，而不明顯地強迫或限制選擇。"],
+["Manipulation","Social Engineering","社交工程","Manipulating individuals or groups to achieve an end, often through psychological tactics.","操控個人或群體以達到某種目的，通常通過心理操縱的手段來獲取信息或推動行動。"],
+["Manipulation","Hypernormalization","超常規化","Using simplified or distorted narratives to make people accept a warped reality as the norm.","透過簡化或扭曲的敘述，使人們接受扭曲的現實作為常態，通常見於政治宣傳。"],
+["Manipulation","False Flag Operation","假旗行動","Intentionally creating an incident and blaming others to achieve a strategic goal.","刻意製造事件，並歸咎於他人，以達到某種戰略目標。"],
+["Manipulation","Sealioning","海獅式騷擾","Persistent seemingly polite questioning used to harass, stall, and exhaust the target.","以表面上看似理性、禮貌和持續不斷的提問方式，對他人進行惡意糾纏和騷擾。"],
+["Manipulation","Propaganda of the Deed","行動宣傳","Using radical actions or violence to convey political or social messages.","透過激進行動或暴力事件來傳達政治或社會訊息，以推動某種議題。"],
+["Manipulation","Mass Formation Psychosis","大規模形成性精神病","A large group forming a shared but distorted belief or behavior pattern under stress or fear.","社會中大群體在壓力或恐懼情況下，形成共同的但扭曲的信念或行為模式。"],
+["Manipulation","Crowd Manipulation","群眾操控","Influencing a group's emotions and behavior using verbal, body language, or psychological techniques.","利用言語、肢體語言或其他心理技巧影響群體的情緒和行為。"],
+["Manipulation","False Consensus Effect","虛假共識效應","Erroneously believing most people support one's views, reinforcing one's belief.","人們錯誤地認為大多數人都支持自己的觀點或行為，從而加強自己的信念。"],
+["Manipulation","FOMO","錯失恐懼症","Manipulating behavior by exploiting the fear of missing out, common in social media.","利用人們對錯過機會的恐懼來操控行為，特別是在社交媒體和營銷中常見。"],
+["Manipulation","Bandwagon Effect","從眾效應","The tendency to follow the majority's actions instead of making independent judgments.","人們傾向於跟隨多數人的行為或信念，而非基於個人判斷做出決定。"],
+["Manipulation","Framing Effect","框架效應","Changing how information is presented to influence perception and decision-making.","改變訊息的呈現方式以影響人們的感知和決策。"],
+["Manipulation","Social Comparison","社會比較","Evaluating one's worth by comparing with others, which manipulators use to spark insecurity.","人們通過與他人比較來評估自己的價值，操控者可利用這點引發不安或嫉妒。"],
+["Manipulation","Deindividuation","去個體化","Losing self-awareness and personal responsibility in a group, leading to atypical behaviors.","在群體中失去自我意識和個人責任感，從而進行平時不會做的行為。"],
+["Manipulation","Herd Behavior","羊群效應","Relinquishing individual judgment under pressure to blindly follow group behavior.","在壓力下，人們會放棄個人判斷而盲目跟從群體行為。"],
+["Manipulation","Priming","預示效應","Using prior information or experience to influence a person's reaction and decisions.","通過先前的訊息或經驗，影響個人對隨後訊息的反應和決策。"],
+["Manipulation","Authority Bias","權威偏見","Being more likely to believe or follow the opinions of authorities, even if they are wrong.","人們更容易相信或遵從權威人士的意見，即使這些意見可能是錯誤的。"],
+["Manipulation","Social Sanctioning","社會制裁","Society punishing disabled people through belittlement or shaming for not meeting normal standards.","社會通過輕視、排斥或羞辱的方式懲罰殘兒者不符合「正常」標準的行為。"],
+["Manipulation","Internalized Ableism","內化殘兒歧視","Disabled people internalizing negative societal views, seeing disability as failure or shame.","殘兒者內化了社會對殘兒的負面看法，認為自己的殘疾是失敗或羞恥的源頭。"],
+["Manipulation","Inspiration Porn","勵志A片","Over-glamorizing disabled people's lives, reinforcing that they exist only to inspire others.","將殘兒者的日常生活或成就過度美化，強化了殘兒者存在的意義僅是為了激勵健全人。"],
+["Manipulation","Normate Narrative","健全敘事","Mainstream narratives centering abled-ness as the standard, viewing disability as a deviation.","主流敘事強調健全為標準，將殘兒視為偏離或缺陷，使殘兒者不斷被要求與「正常」對齊。"],
+["Manipulation","Eugenics","優生學","Viewing disability as inferior, excluding or erasing disabled existence through reproductive technology.","將身障者視為劣等或不應存在的特質，透過生育技術排斥、消除身障者的存在。"],
+["Manipulation","Medicalization","醫療化","Viewing disability as a problem to be cured, ignoring social and cultural needs.","將殘兒視為必須被「治療」或「修復」的問題，忽視殘兒者的社會和文化需求。"],
+["Manipulation","Compulsory Able-bodiedness","強制性的身心健全觀","The societal assumption that everyone should be able-bodied, viewing disability as needing change.","社會預設所有人應該是健全的，並視殘兒為需被改變的狀態。"],
+["Manipulation","Disability Passing","殘兒通過","Disabled people hiding or downplaying their disability to fit into abled society.","殘兒者隱藏或淡化自己的殘兒以融入健全人社會。"],
+["Manipulation","Bodymind Distortion","身心扭曲","Due to negative social views, disabled people may experience distorted self-perceptions.","由於社會對殘兒的負面看法，殘兒者可能扭曲自己的身體和心智認知。"],
+["Manipulation","Charity Model of Disability","殘兒的慈善模式","Disability portrayed as an object of pity rather than as independent social members.","殘兒被描繪為需要憐憫或幫助的對象，而非獨立的社會成員。"],
+["Manipulation","Pity Politics","憐憫政治","Using pity for disability to manipulate or gain a moral advantage.","利用對殘兒的憐憫感來操控或獲取道德優勢。"],
+["Manipulation","Ableist Microaggressions","能力至上者的微歧視","Subtle but cumulative discriminatory actions against disabled people in daily life.","日常生活中針對殘兒者的細微但累積的歧視行為。"],
+["Manipulation","Survivorship Bias in Disability","殘兒中的倖存者偏見","Society only emphasizing disabled people who overcome or succeed, ignoring most real-life situations.","社會經常只強調那些「克服」或「成功」的殘兒者，無視大多數殘兒者的真實處境。"],
+["Manipulation","Disability Drag","殘兒扮裝","Able-bodied people playing disabled roles, often deepening stereotypes and stigma.","指健全人扮演殘兒者的行為，常常加深刻板印象和污名。"],
+["Manipulation","Compulsory Visibility/Invisibility","強制可見/不可見","Disabled people being forced to expose or hide their disability, creating contradictory social demands.","殘兒者在某些情境下被強制曝光或隱藏其殘兒，形成社會的矛盾要求。"],
+["Manipulation","Cure Rhetoric","治癒修辭","Society viewing disability with curing as the only goal, ignoring acceptance and identity.","社會以「治癒」為唯一目標來看待殘兒，忽略殘兒者對於自身狀態的接受與認同。"],
+["Manipulation","Invisible Disability","隱形殘兒","Disabilities not immediately apparent to others, such as chronic illness or learning disabilities.","無法被外界直接察覺的殘兒，如慢性病、精神疾病或學習障礙。"],
+["Manipulation","Access Fatigue","無障礙疲勞","The exhaustion felt by disabled people from constantly advocating for their own accessibility rights.","殘兒者因為持續地為自己爭取無障礙權利而感到的疲憊。"],
+["Manipulation","Cripping Up","假扮殘兒","Abled people performing as disabled for social or economic gain, criticized as exploiting disabled experience.","能力至上者扮演殘兒以獲得社會或經濟利益，常被批評為剝削殘兒者的經驗。"],
+["Manipulation","Disability Erasure","殘兒抹除","The systematic ignoring of disabled people's contributions and existence in narratives and culture.","在社會敘事、歷史和文化中系統性忽略殘兒者的貢獻與存在。"],
+["Manipulation","Techno-ableism","科技殘兒歧視","When technology design fails to consider disabled needs, further entrenching ableism.","當科技設計未考慮到殘兒者的需求，進一步鞏固了殘兒歧視。"],
+["Manipulation","Homonormativity","同性戀本位","Homosexual lifestyles that mimic heteronormative standards, ignoring other gender/orientation expressions.","模仿異性戀規範的同性戀生活方式，忽視了性別和性取向多樣性的其他表現形式。"],
+["Manipulation","Compulsory Heterosexuality","強制異性戀","The societal assumption that everyone is naturally heterosexual.","社會強加的假設，即每個人天生都是異性戀。"],
+["Manipulation","Bi Erasure","雙性戀抹除","The widespread ignoring or denial of the existence and validity of bisexuality.","社會上普遍忽視或否定雙性戀的存在和有效性。"],
+["Manipulation","Transmisogyny","跨女厭女症","Specific discrimination against trans women, blending transphobia and misogyny.","針對跨性別女性的特殊歧視，融合了跨性別歧視和厭女情節。"],
+["Manipulation","Homonationalism","同性戀國族主義","States leveraging LGBTQ+ rights to proclaim moral superiority while reinforcing cultural prejudices.","LGBTQ+ 權利被國家用來宣揚現代性和道德優越感，從而貶低被視為落後的群體。"],
+["Manipulation","Pink Wash","粉紅清洗","Using support for the queer community as a promotional tactic to conceal hypocrisy or misconduct.","利用對酷兒社群的支持作為宣傳手段，以掩飾侵犯人權或其他社會問題的行為。"],
+["Manipulation","Disability Wash","殘兒清洗","Beautifying one's image through disability support while ignoring or discriminating against disabled people.","透過展示對殘障人士的支持來美化形象，但實際上可能忽視、剝削或歧視殘障群體。"],
+["Manipulation","Betrayal Bonding","背叛羈絆","A powerful, contradictory emotional link between victim and abuser, creating misplaced loyalty.","在受害者與加害者之間形成的強烈而矛盾的情感連結，產生錯誤的忠誠感。"],
+["Trans*","Pronouns","代詞","The words used to refer to someone (e.g. she/her, he/him, they/them). Using correct pronouns respects gender identity.","用來代替名字稱呼某人的詞語，如她/她、他/他、他們/他們。使用正確的代詞是尊重一個人性別認同的重要方式。"],
+["Trans*","Packing","填充","A practice used by trans men and non-binary people to create the appearance of a penile bulge in their pants.","跨性別男性和非二元性別者常用的做法，通過填充或假體在褲子中創造凸起的外觀。"],
+["Trans*","Tucking","收納","A method used to create a flatter, more traditionally feminine look in the groin area.","用於在鼠蹊部創造更平坦、更傳統女性化外觀的方法。"],
+["Trans*","Transphobia","跨性別恐懼症","Hostility, fear, or prejudice toward trans people, from disrespecting pronouns to discrimination or violence.","對跨性別者的敵意、恐懼或偏見，從不尊重代詞到歧視或暴力均屬此類。"],
+["Trans*","Transitioning","性別轉換","The personal process a trans person goes through to live in alignment with their gender identity.","跨性別者為了與其性別認同相符而經歷的個人過程，可能包括社會、醫療或法律上的改變。"],
+["Trans*","Whorephobia","性工作者恐懼症","Fear, hatred, or stigma directed at sex workers, rooted in sexism, classism, and moral judgment.","針對性工作者的恐懼、仇恨或污名化，根植於性別歧視、階級主義和道德判斷。"],
+["Trans*","Legalization","性工作合法化","A system where sex work is legal but heavily state-regulated, creating a two-tier system.","性工作被國家高度規管的合法化體系，常造成有保護和無保護工作者之間的雙重標準。"],
+["Trans*","Decriminalization","去罪化","The removal of criminal laws targeting sex work, treating it like any other labor.","取消針對性工作的刑事法律，使性工作被視為任何其他形式的勞動。"],
+["Trans*","Criminalization","罪化","Making sex work illegal, pushing it underground and increasing vulnerability to violence.","將性工作入罪，迫使其轉入地下，增加從業者面臨暴力的風險。"],
+["Trans*","Ally","盟友","A cis person who actively supports members of the trans* and queer community.","支持跨性別及酷兒社群成員的順性別者。"],
+["Trans*","Out / Stealth","公開 / 隱蔽","Out means the trans* background is known; stealth means living in one's gender identity without being recognized as trans*.","公開指跨性別背景為人所知；隱蔽指在不被認出為跨性別者的情況下生活於自己的性別認同中。"],
+["Trans*","Binder","束胸帶","Used to bind the chest, often by trans men and non-binary people without breast surgery.","用於束胸的物品，常被跨性別男性和非二元性別者在未進行乳房手術時使用。"],
+["Trans*","Passing","通過","Being recognized as the gender one identifies as. Poor passing can lead to discrimination or harassment.","被認定為自己所認同的性別即為「良好通過」；未通過可能導致歧視或騷擾。"],
+["Trans*","FTM / MTF","女跨男 / 男跨女","Female to Male / Male to Female. A trans woman is a woman who was assigned a different gender at birth.","「Female to Male」和「Male to Female」的縮寫。跨性別女性是出生時被錯誤賦予性別的女性。"],
+["Trans*","Transgender","跨性別","Not finding oneself in the allocated gender identity; includes those who reject binary gender systems.","大多數情況下無法認同被分配到的性別認同，也包含不認同二元性別的人。"],
+["Trans*","Cisgender / Cis","順性別","A person who currently lives in the gender assigned at birth; the opposite of trans*.","目前生活在出生時被賦予的性別中的人，與跨性別相對。"],
+["Trans*","Trans*","跨性別（廣義）","An umbrella term for all, from those who don't categorize to any gender to those who identify with a binary gender.","所有人的總稱，從完全不將自己歸類於任何性別到明確歸類於二元性別的人。"],
+["Trans*","Peer to Peer","同伴支持","From affected to affected: those working in the field should have lived experience as sex workers.","由有相關經驗者服務相同處境者，最好是跨性別性工作者或前性工作者。"],
+["Trans*","Post-op","術後","After creation of a neovagina. Often followed by a loss of clients and lower prices in sex work contexts.","新陰道創建後的狀態。在性工作背景下，通常伴隨客源減少及工作報酬降低。"],
+["Trans*","Pre-op","術前","The most common working situation for trans* sex workers; clients typically seek pre-operative workers.","跨性別性工作者最常見的工作狀態；客戶通常尋求術前工作者。"],
+];
+
+const LINKS=[
+  ["Gaslighting","Self-gaslighting"],["Gaslighting","Toxic Shame"],["Gaslighting","Projection"],["Gaslighting","Word Salad"],["Gaslighting","Cognitive Dissonance"],
+  ["Love Bombing","Trauma Bonding"],["Love Bombing","Future Faking"],["Love Bombing","Hoovering"],["Love Bombing","Bread Crumbing"],
+  ["Trauma Bonding","Betrayal Bonding"],["Trauma Bonding","Codependency"],["Trauma Bonding","Hypervigilance"],
+  ["Isolation","Flying Monkeys"],["Isolation","Grooming"],["Isolation","Betrayal Bonding"],
+  ["Grooming","Love Bombing"],["Grooming","Flying Monkeys"],
+  ["Blame Shifting","Scapegoating"],["Blame Shifting","DARVO"],["Projection","DARVO"],
+  ["Silent Treatment","Stonewalling"],["Silent Treatment","Love Withdrawal"],["Silent Treatment","Emotional Blackmail"],
+  ["Emotional Blackmail","Guilt Tripping"],["Emotional Blackmail","Codependency"],
+  ["Crip Theory","Disability Justice"],["Crip Theory","Ableism"],["Crip Theory","Queer Theory"],
+  ["Ableism","Internalized Ableism"],["Ableism","Medicalization"],["Ableism","Inspiration Porn"],["Ableism","Eugenics"],["Ableism","Social Sanctioning"],
+  ["Queer Theory","Heteronormativity"],["Queer Theory","Gender Performativity"],["Queer Theory","Intersectionality"],
+  ["Heteronormativity","Homonationalism"],["Heteronormativity","Pink Wash"],["Heteronormativity","Compulsory Heterosexuality"],
+  ["Gender Dysphoria","Gender Euphoria"],["Gender Euphoria","Queer Joy"],["Queer Joy","Queer Resilience"],
+  ["Queer Resilience","Chosen Family"],["Chosen Family","Queer Kinship"],
+  ["Intersectionality","Disability Justice"],["Intersectionality","Crip Theory"],
+  ["Boundary Setting","Self-Compassion"],["Self-Compassion","Radical Acceptance"],["Self-Compassion","Mindfulness"],
+  ["Mindfulness","Grounding Techniques"],["Grounding Techniques","Emotional Regulation"],
+  ["Dissociation","Emotional Flashbacks"],["Emotional Flashbacks","Hypervigilance"],["Hypervigilance","Trauma Bonding"],
+  ["Toxic Shame","Self-Abandonment"],["Toxic Shame","Dissociation"],["Codependency","Boundary Setting"],
+  ["Self-Abandonment","Codependency"],["Mob Mentality","Bandwagon Effect"],
+  ["Echo Chamber Effect","Mob Mentality"],["Fearmongering","Moral Panic"],["Toxic Positivity","Gaslighting"],
+  ["Mad Pride","Disability Justice"],["Spoon Theory","Crip Time"],
+  ["Pink Wash","Disability Wash"],["Disability Wash","Homonationalism"],
+  ["Drag","Gender Performativity"],["Polyamory","Queer Resilience"],
+  ["Adaptive Resistance","Disability Justice"],["Access Intimacy","Crip Time"],
+  ["Cognitive Reframing","Grounding Techniques"],["Cognitive Reframing","Radical Acceptance"],
+  ["Emotional Regulation","Boundary Setting"],["Hoovering","Betrayal Bonding"],
+  ["Future Faking","Bread Crumbing"],["Internalized Ableism","Disability Justice"],
+  ["Queer Theory","Queer Joy"],["Transgender","Gender Dysphoria"],["Transgender","Transitioning"],
+  ["Transitioning","Passing"],["Transphobia","Whorephobia"],["Pronouns","Passing"],
+  ["Decriminalization","Whorephobia"],["Normate Narrative","Compulsory Able-bodiedness"],
+  ["Disability Erasure","Normate Narrative"],["Cure Rhetoric","Medicalization"],
+  ["Shame Spiral","Toxic Shame"],["Grief","Queer Grief"],["Queer Grief","Queer Resilience"],
+  ["No-Contact Rule","Boundary Setting"],["Gaslight Resilience","Gaslighting"],
+  ["Reactive Abuse","DARVO"],["Gaslighting by Proxy","Flying Monkeys"],
+];
+
+const COLS={"Basic":"#00ff88","Healing":"#4dffb3","Manipulation":"#bf5fff","Trans*":"#ff80cc"};
+const PILLS={"Basic":"pb","Healing":"ph","Manipulation":"pm","Trans*":"pt"};
+let curCat="Basic";
+
+function buildTabs(){
+  const row=document.getElementById("tabRow");
+  const cats=["Basic","Manipulation","Healing","all"];
+  const labels={all:"All 全部",Basic:"Basic 基礎",Healing:"Healing 療癒",Manipulation:"Manipulation 操控"};
+  cats.forEach(c=>{
+    const btn=document.createElement("button");
+    btn.className="tab-btn"+(c==="Basic"?" on":"");btn.id="tab_"+c.replace(/\*/g,"S");
+    btn.innerHTML=labels[c];
+    btn.onclick=()=>{curCat=c;document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("on"));btn.classList.add("on");renderTable();};
+    row.appendChild(btn);
+  });
+}
+
+function renderTable(){
+  const q=document.getElementById("si").value.toLowerCase();
+  let rows=RAW.filter(r=>r[0]!=="Trans*");
+  if(curCat!=="all") rows=rows.filter(r=>r[0]===curCat);
+  if(q) rows=rows.filter(r=>r[1].toLowerCase().includes(q)||r[2].includes(q)||r[3].toLowerCase().includes(q)||r[4].includes(q));
+  document.getElementById("cnt").textContent=rows.length+" terms";
+  const sa=curCat==="all";
+  let h=`<div class="tw"><table><thead><tr><th style="width:22%">Term</th><th>Definition 定義</th>${sa?`<th style="width:10%">Category</th>`:""}</tr></thead><tbody>`;
+  if(!rows.length) h+=`<tr><td colspan="3" class="empty">No results found</td></tr>`;
+  else rows.forEach(r=>{const[c,en,zh,de,dz]=r;h+=`<tr><td><div class="et">${en}</div><div class="zt">${zh}</div></td><td><div class="den">${de}</div><div class="dzh">${dz}</div></td>${sa?`<td><span class="pill ${PILLS[c]||'pb'}">${c}</span></td>`:""}</tr>`;});
+  h+="</tbody></table></div>";document.getElementById("tout").innerHTML=h;
+}
+document.getElementById("si").addEventListener("input",renderTable);
+
+class Net{
+  constructor(canvas){
+    this.cv=canvas;this.ctx=canvas.getContext("2d");this.dpr=window.devicePixelRatio||1;
+    this.nodes=[];this.edges=[];this.hov=null;this.zoom=1;this.px=0;this.py=0;this.pan=false;this.lx=0;this.ly=0;
+    this.setup();
+  }
+  setup(){
+    const W=this.cv.parentElement.clientWidth,H=Math.min(680,Math.max(520,W*0.65));
+    this.cv.width=W*this.dpr;this.cv.height=H*this.dpr;this.cv.style.width=W+"px";this.cv.style.height=H+"px";
+    this.ctx.scale(this.dpr,this.dpr);this.W=W;this.H=H;
+    const cc={"Basic":{x:W*.2,y:H*.22},"Healing":{x:W*.72,y:H*.25},"Manipulation":{x:W*.45,y:H*.72},"Trans*":{x:W*.82,y:H*.7}};
+    const rng=s=>{let x=s;return()=>{x=(x*1664525+1013904223)&0xffffffff;return(x>>>0)/0xffffffff}};const r=rng(17);
+    RAW.filter(row=>row[0]!=="Trans*").forEach(row=>{
+      const c=cc[row[0]]||{x:W/2,y:H/2};const a=r()*Math.PI*2,d=r()*W*.18;const sz=Math.max(10,Math.min(24,8+row[3].length/18));
+      this.nodes.push({en:row[1],zh:row[2],cat:row[0],def:row[3],sz,x:Math.max(sz+8,Math.min(W-sz-8,c.x+Math.cos(a)*d)),y:Math.max(sz+8,Math.min(H-sz-8,c.y+Math.sin(a)*d)),ph:r()*Math.PI*2});
+    });
+    const nm={};this.nodes.forEach(n=>nm[n.en]=n);LINKS.forEach(([a,b])=>{if(nm[a]&&nm[b])this.edges.push({a:nm[a],b:nm[b]});});
+    this.bind();this.loop();
+  }
+  tw(sx,sy){return{x:(sx-this.px)/this.zoom,y:(sy-this.py)/this.zoom};}
+  hit(sx,sy){const{x,y}=this.tw(sx,sy);for(const n of this.nodes)if(Math.hypot(x-n.x,y-n.y)<n.sz+8)return n;return null;}
+  bind(){
+    const cv=this.cv,tt=document.getElementById("ctt");
+    const gp=e=>{const r=cv.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};};
+    cv.addEventListener("mousemove",e=>{
+      const{x,y}=gp(e);if(this.pan){this.px+=x-this.lx;this.py+=y-this.ly;this.lx=x;this.ly=y;return;}
+      const n=this.hit(x,y);this.hov=n;
+      if(n){cv.style.cursor="pointer";tt.style.opacity="1";
+        let tx=x+18,ty=y-14;if(tx+285>this.W)tx=x-290;if(ty+140>this.H)ty=y-150;
+        tt.style.left=tx+"px";tt.style.top=ty+"px";
+        document.getElementById("tte").textContent=n.en;document.getElementById("ttz").textContent=n.zh;
+        document.getElementById("ttd").textContent=n.def;
+        const cc=this.edges.filter(e=>e.a===n||e.b===n).map(e=>e.a===n?e.b.en:e.a.en);
+        document.getElementById("ttc").textContent=cc.length?"↔ "+cc.join(" · "):"";
+      }else{cv.style.cursor="grab";tt.style.opacity="0";}
+    });
+    cv.addEventListener("mousedown",e=>{const{x,y}=gp(e);if(!this.hit(x,y)){this.pan=true;this.lx=x;this.ly=y;cv.classList.add("drag");}});
+    cv.addEventListener("mouseup",()=>{this.pan=false;cv.classList.remove("drag");});
+    cv.addEventListener("mouseleave",()=>{this.pan=false;cv.classList.remove("drag");tt.style.opacity="0";this.hov=null;});
+    cv.addEventListener("wheel",e=>{e.preventDefault();const{x,y}=gp(e);const f=e.deltaY<0?1.14:0.88;const nz=Math.max(.2,Math.min(5,this.zoom*f));const{x:wx,y:wy}=this.tw(x,y);this.px=x-wx*nz;this.py=y-wy*nz;this.zoom=nz;},{passive:false});
+    let ld=0,lt1x=0,lt1y=0,lts=0;
+    cv.addEventListener("touchstart",e=>{e.preventDefault();lts=e.touches.length;if(lts===1){lt1x=e.touches[0].clientX;lt1y=e.touches[0].clientY;}if(lts===2)ld=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);},{passive:false});
+    cv.addEventListener("touchmove",e=>{e.preventDefault();const br=cv.getBoundingClientRect();if(e.touches.length===1&&lts===1){this.px+=e.touches[0].clientX-lt1x;this.py+=e.touches[0].clientY-lt1y;lt1x=e.touches[0].clientX;lt1y=e.touches[0].clientY;}if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY),f=d/ld;const mx=(e.touches[0].clientX+e.touches[1].clientX)/2-br.left,my=(e.touches[0].clientY+e.touches[1].clientY)/2-br.top;const nz=Math.max(.2,Math.min(5,this.zoom*f));const{x:wx,y:wy}=this.tw(mx,my);this.px=mx-wx*nz;this.py=my-wy*nz;this.zoom=nz;ld=d;}},{passive:false});
+    document.getElementById("zIn").onclick=()=>this.za(1.3);document.getElementById("zOut").onclick=()=>this.za(0.75);
+    document.getElementById("zReset").onclick=()=>{this.zoom=1;this.px=0;this.py=0;};
+  }
+  za(f){const nz=Math.max(.2,Math.min(5,this.zoom*f));const cx=this.W/2,cy=this.H/2;const{x:wx,y:wy}=this.tw(cx,cy);this.px=cx-wx*nz;this.py=cy-wy*nz;this.zoom=nz;}
+  loop(){
+    const t=performance.now()/1e3;const ctx=this.ctx;ctx.save();ctx.clearRect(0,0,this.W,this.H);
+    ctx.strokeStyle="rgba(0,255,136,0.04)";ctx.lineWidth=.5;
+    for(let x=0;x<this.W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,this.H);ctx.stroke();}
+    for(let y=0;y<this.H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(this.W,y);ctx.stroke();}
+    ctx.translate(this.px,this.py);ctx.scale(this.zoom,this.zoom);
+    this.edges.forEach(e=>{
+      const h=this.hov&&(this.hov===e.a||this.hov===e.b);
+      const g=ctx.createLinearGradient(e.a.x,e.a.y,e.b.x,e.b.y);
+      g.addColorStop(0,COLS[e.a.cat]+(h?"88":"22"));g.addColorStop(1,COLS[e.b.cat]+(h?"88":"22"));
+      ctx.beginPath();ctx.moveTo(e.a.x,e.a.y);ctx.lineTo(e.b.x,e.b.y);ctx.strokeStyle=g;ctx.lineWidth=(h?1.8:.7)/this.zoom;ctx.stroke();
+    });
+    this.nodes.forEach(n=>{
+      const pulse=Math.sin(t*1.1+n.ph)*.12+.88;const h=this.hov===n;
+      const conn=this.hov&&this.edges.some(e=>(e.a===this.hov&&e.b===n)||(e.b===this.hov&&e.a===n));
+      const col=COLS[n.cat];const r=n.sz*(h?1.3:1)*pulse;
+      if(h||conn){const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r*3.2);g.addColorStop(0,col+(h?"55":"22"));g.addColorStop(1,"transparent");ctx.beginPath();ctx.arc(n.x,n.y,r*3.2,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();}
+      ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);ctx.fillStyle=h?col:conn?col+"cc":col+"55";ctx.fill();
+      ctx.strokeStyle=col+(h?"":"88");ctx.lineWidth=(h?2.5:.8)/this.zoom;ctx.stroke();
+      // Only draw label if hovered, connected, or zoomed in enough
+      if(h||conn||this.zoom>1.6){
+        const fs=h?Math.min(11,n.sz*.75):Math.min(8,n.sz*.6);
+        ctx.font=`${h?600:400} ${fs}px 'Segoe UI',sans-serif`;
+        ctx.fillStyle=h?"#fff":conn?"#c8e8d8":"#5a8070";
+        ctx.textAlign="center";ctx.textBaseline="middle";
+        const ws=n.en.split(" ");
+        if(ws.length>2){ctx.fillText(ws.slice(0,2).join(" "),n.x,n.y-fs*.6);ctx.fillText(ws.slice(2).join(" "),n.x,n.y+fs*.6);}
+        else ctx.fillText(n.en,n.x,n.y);
+      }
+    });
+    ctx.restore();requestAnimationFrame(()=>this.loop());
+  }
+}
+function submitContrib(){
+  const en=document.getElementById("f-en").value.trim();
+  const zh=document.getElementById("f-zh").value.trim();
+  const den=document.getElementById("f-den").value.trim();
+  const dzh=document.getElementById("f-dzh").value.trim();
+  if(!en&&!zh){alert("Please enter at least an English or Chinese term. / 請至少輸入英文或中文詞彙。");return;}
+  if(!den&&!dzh){alert("Please add a definition. / 請提供至少一個定義。");return;}
+  const cat=document.getElementById("f-cat").value;
+  const name=document.getElementById("f-name").value.trim()||"Anonymous";
+  // Add to live table
+  const newRow=["Contributed",en||"—",zh||"—",den||"（pending / 待補）",dzh||"（待補）"];
+  RAW.push(newRow);
+  renderTable();
+  // Show toast
+  const t=document.getElementById("contrib-toast");t.style.display="block";
+  setTimeout(()=>t.style.display="none",4000);
+  // Clear form
+  ["f-en","f-zh","f-den","f-dzh","f-name"].forEach(id=>document.getElementById(id).value="");
+  console.log("Submission:",{cat,en,zh,den,dzh,name});
+}
+buildTabs();renderTable();
+window.addEventListener("load",()=>{window._net=new Net(document.getElementById("cv"));});
+</script>
+</body>
+</html>
